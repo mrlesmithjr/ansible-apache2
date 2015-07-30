@@ -1,0 +1,10 @@
+---
+- name: php | installing php5 for apache2
+  apt: name=libapache2-mod-php5 state=present
+  notify: restart apache2
+  when: install_php is defined and install_php
+
+- name: php | installing php5-sqlite for apache2
+  apt: name=php5-sqlite state=present
+  notify: restart apache2
+  when: install_php_sqlite is defined and install_php_sqlite

@@ -1,0 +1,6 @@
+---
+- name: centos | installing apache
+  yum: name=httpd state=present
+
+- name: centos | enabling apache on boot and starting
+  service: name=httpd state=started enabled=yes

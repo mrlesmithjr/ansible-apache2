@@ -1,0 +1,4 @@
+---
+# defaults file for ansible-apache2
+install_php: false
+install_php_sqlite: false
