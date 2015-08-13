@@ -3,6 +3,7 @@ Role Name
 
 Installs apache2 http://httpd.apache.org/
 
+[![Build Status](https://travis-ci.org/mrlesmithjr/ansible-apache2.svg?branch=master)](https://travis-ci.org/mrlesmithjr/ansible-apache2)
 Requirements
 ------------
 
