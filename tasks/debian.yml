@@ -1,3 +1,3 @@
 ---
 - name: debian | installing apache2 package
-  apt: name=apache2 state=present
+  apt: name=apache2 state=present update_cache=yes
