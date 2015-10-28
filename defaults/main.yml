@@ -1,4 +1,6 @@
 ---
 # defaults file for ansible-apache2
+apache2_php_max_memory: 128M  #defines max memory for Apache php....default is 128M
+config_php: false  #defines if php.ini should be configured for Apache2
 install_php: false
 install_php_sqlite: false

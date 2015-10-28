@@ -1,12 +1,16 @@
 ---
 # tasks file for ansible-apache2
 - include: debian.yml
-  tags: [install_apache2]
+  tags:
+    - install_apache2
   when: ansible_os_family == "Debian"
 
 - include: centos.yml
-  tags: [install_apache2]
+  tags:
+    - install_apache2
   when: ansible_os_family == "RedHat"
 
 - include: php.yml
-  tags: [install_apache2_php5]
+  tags:
+    - config_php
+    - install_apache2_php5
