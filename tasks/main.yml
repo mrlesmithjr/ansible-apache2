@@ -5,7 +5,7 @@
     - install_apache2
   when: ansible_os_family == "Debian"
 
-- include: centos.yml
+- include: redhat.yml
   tags:
     - install_apache2
   when: ansible_os_family == "RedHat"

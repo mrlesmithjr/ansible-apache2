@@ -6,12 +6,24 @@
   with_items:
     - dnf
     - python-dnf
-  when: ansible_distribution != "Fedora"
+  when: >
+        (ansible_distribution != "Fedora" and
+        ansible_distribution_version | version_compare('7', '>='))
 
 - name: redhat | installing apache
   dnf:
     name: "httpd"
     state: present
+  when: >
+        (ansible_distribution == "Fedora" or
+        ansible_distribution_version | version_compare('7', '>='))
+
+- name: redhat | installing apache
+  yum:
+    name: "httpd"
+    state: present
+  when: >
+        ansible_distribution_version | version_compare('7', '<')
 
 - name: redhat | enabling apache on boot and starting
   service:
