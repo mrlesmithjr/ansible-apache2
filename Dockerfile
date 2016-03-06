@@ -1,29 +1,39 @@
-#Builds Ubuntu Apache2 image
+FROM ubuntu:14.04
 
-FROM mrlesmithjr/ubuntu-ansible
+MAINTAINER Larry Smith Jr. <mrlesmithjr@gmail.com>
 
-MAINTAINER mrlesmithjr@gmail.com
+#Update apt-cache
+RUN apt-get update
 
-#Install packages
-RUN apt-get update && apt-get install -y git
+#Install pre-reqs for Ansible
+RUN apt-get -y install git software-properties-common
 
-#Create Ansible Folder
-RUN mkdir -p /opt/ansible-playbooks/roles
+#Adding Ansible ppa
+RUN apt-add-repository ppa:ansible/ansible
 
-#Clone GitHub Repo
-RUN git clone https://github.com/mrlesmithjr/ansible-apache2.git /opt/ansible-playbooks/roles/ansible-apache2
+#Update apt-cache
+RUN apt-get update
+
+#Install Ansible
+RUN apt-get -y install ansible
+
+#Create directory to copy Ansible files to
+RUN mkdir -p /opt/ansible_tasks
 
 #Copy Ansible playbooks
-COPY playbook.yml /opt/ansible-playbooks/
+COPY playbook.yml requirements.yml /opt/ansible_tasks/
 
-#Run Ansible playbook to install apache2
-RUN ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/playbook.yml
+#Install Ansible role(s)
+RUN ansible-galaxy install -r /opt/ansible_tasks/requirements.yml
 
-# Cleanup
-RUN apt-get clean -y && \
-    apt-get autoremove -y
+#Run Ansible playbook
+RUN ansible-playbook -c local /opt/ansible_tasks/playbook.yml
 
-# Cleanup
+#Clean-up packages
+RUN apt-get -y clean && \
+    apt-get -y autoremove
+
+#Clean-up temp files
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #Expose 80/tcp
