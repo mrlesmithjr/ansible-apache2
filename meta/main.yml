@@ -22,14 +22,14 @@ galaxy_info:
     versions:
   #  - all
   #  - 5
-  #  - 6
+    - 6
     - 7
   #- name: GenericUNIX
   #  versions:
   #  - all
   #  - any
-  #- name: Fedora
-  #  versions:
+  - name: Fedora
+    versions:
   #  - all
   #  - 16
   #  - 17
@@ -38,6 +38,7 @@ galaxy_info:
   #  - 20
   #  - 21
   #  - 22
+    - 23
   #- name: Windows
   #  versions:
   #  - all
@@ -102,14 +103,14 @@ galaxy_info:
   #  versions:
   #  - all
   #  - any
-  #- name: Debian
-  #  versions:
+  - name: Debian
+    versions:
   #  - all
   #  - etch
-  #  - jessie
+    - jessie
   #  - lenny
   #  - squeeze
-  #  - wheezy
+    - wheezy
   #
   # Below are all categories currently available. Just as with
   # the platforms above, uncomment those that apply to your role.
