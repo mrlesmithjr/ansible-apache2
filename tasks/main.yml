@@ -12,8 +12,9 @@
 
 - include: opensuse.yml
   when: ansible_os_family == "openSUSE Leap"
-  
+
 - include: php.yml
   tags:
-    - config_php
+    - apache2_config_php
     - install_apache2_php5
+  when: apache2_install_php

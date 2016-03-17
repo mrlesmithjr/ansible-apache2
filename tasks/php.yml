@@ -5,9 +5,7 @@
     state: present
   notify: restart apache2
   when: >
-        ansible_os_family == "Debian" and
-        (install_php is defined and
-        install_php)
+        ansible_os_family == "Debian"
 
 - name: php | installing php5-sqlite for apache2
   apt:
@@ -16,8 +14,8 @@
   notify: restart apache2
   when: >
         ansible_os_family == "Debian" and
-        (install_php_sqlite is defined and
-        install_php_sqlite)
+        (apache2_install_php_sqlite is defined and
+        apache2_install_php_sqlite)
 
 - name: php | configuring php
   template:
@@ -29,5 +27,5 @@
   notify: restart apache2
   when: >
         ansible_os_family == "Debian" and
-        (config_php is defined and
-        config_php)
+        (apache2_config_php is defined and
+        apache2_config_php)
