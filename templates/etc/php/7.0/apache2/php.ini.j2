@@ -1,17 +1,16 @@
 [PHP]
 engine = On
 short_open_tag = Off
-asp_tags = Off
 precision = 14
 output_buffering = 4096
 zlib.output_compression = Off
 implicit_flush = Off
 unserialize_callback_func =
 serialize_precision = 17
-disable_functions = pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,
+disable_functions = pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,
 disable_classes =
 zend.enable_gc = On
-expose_php = On
+expose_php = Off
 max_execution_time = 30
 max_input_time = 60
 {% if apache2_php_max_memory is defined %}
@@ -38,6 +37,7 @@ post_max_size = 8M
 auto_prepend_file =
 auto_append_file =
 default_mimetype = "text/html"
+default_charset = "UTF-8"
 doc_root =
 user_dir =
 enable_dl = Off
@@ -58,8 +58,6 @@ cli_server.color = On
 [iconv]
 
 [intl]
-
-[sqlite]
 
 [sqlite3]
 
@@ -97,20 +95,6 @@ ibase.timestampformat = "%Y-%m-%d %H:%M:%S"
 ibase.dateformat = "%Y-%m-%d"
 ibase.timeformat = "%H:%M:%S"
 
-[MySQL]
-mysql.allow_local_infile = On
-mysql.allow_persistent = On
-mysql.cache_size = 2000
-mysql.max_persistent = -1
-mysql.max_links = -1
-mysql.default_port =
-mysql.default_socket =
-mysql.default_host =
-mysql.default_user =
-mysql.default_password =
-mysql.connect_timeout = 60
-mysql.trace_mode = Off
-
 [MySQLi]
 mysqli.max_persistent = -1
 mysqli.allow_persistent = On
@@ -137,13 +121,6 @@ pgsql.max_links = -1
 pgsql.ignore_notice = 0
 pgsql.log_notice = 0
 
-[Sybase-CT]
-sybct.allow_persistent = On
-sybct.max_persistent = -1
-sybct.max_links = -1
-sybct.min_server_severity = 10
-sybct.min_client_severity = 10
-
 [bcmath]
 bcmath.scale = 0
 
@@ -164,8 +141,6 @@ session.serialize_handler = php
 session.gc_probability = 0
 session.gc_divisor = 1000
 session.gc_maxlifetime = 1440
-session.bug_compat_42 = Off
-session.bug_compat_warn = Off
 session.referer_check =
 session.cache_limiter = nocache
 session.cache_expire = 180
@@ -174,16 +149,8 @@ session.hash_function = 0
 session.hash_bits_per_character = 5
 url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
 
-[MSSQL]
-mssql.allow_persistent = On
-mssql.max_persistent = -1
-mssql.max_links = -1
-mssql.min_error_severity = 10
-mssql.min_message_severity = 10
-mssql.compatibility_mode = Off
-mssql.secure_connection = Off
-
 [Assertion]
+zend.assertions = -1
 
 [COM]
 
@@ -214,3 +181,5 @@ ldap.max_links = -1
 [opcache]
 
 [curl]
+
+[openssl]
