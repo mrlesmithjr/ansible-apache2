@@ -3,9 +3,11 @@
   zypper:
     name: "apache2"
     state: present
+  become: true
 
 - name: opensuse | ensuring apache is enabled and started
   service:
     name: "apache2"
     state: started
     enabled: yes
+  become: true

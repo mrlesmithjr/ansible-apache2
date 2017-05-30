@@ -2,12 +2,10 @@
 <VirtualHost *:{{ apache2_default_port }}>
 	ServerAdmin {{ apache2_server_admin }}
 	DocumentRoot {{ apache2_web_root }}
-
 	ErrorLog ${APACHE_LOG_DIR}/error.log
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
-
 </VirtualHost>
-{% elif apache2_config_virtual_hosts %}
+{% elif apache2_virtual_hosts is defined and apache2_config_virtual_hosts %}
 {%   for item in apache2_virtual_hosts %}
 <VirtualHost *:{{ item.port }}>
 	ServerAdmin {{ item.serveradmin }}
