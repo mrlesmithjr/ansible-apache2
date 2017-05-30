@@ -1,17 +1,27 @@
 ---
-- name: php | installing php5 for apache2
+- name: php | Installing PHP5 For Apache2 (Alpine)
+  apk:
+    name: "php{{ apache2_php_version }}-apache2"
+    state: "present"
+  become: true
+  notify: "restart apache2"
+  when: ansible_os_family == "Alpine"
+
+- name: php | installing php5 for apache2 (Debian)
   apt:
     name: "libapache2-mod-php5"
-    state: present
-  notify: restart apache2
+    state: "present"
+  become: true
+  notify: "restart apache2"
   when: >
         ansible_os_family == "Debian" and
         apache2_php_version == "5"
 
-- name: php | Installing Apache PHP
+- name: php | Installing Apache PHP (Debian)
   apt:
     name: "libapache2-mod-php"
     state: "present"
+  become: true
   when: >
         ansible_os_family == "Debian" and
         apache2_php_version == "7.0"
@@ -19,8 +29,9 @@
 - name: php | Installing PHP{{ apache2_php_version }}-sqlite For Apache2
   apt:
     name: "php{{ apache2_php_version }}-sqlite"
-    state: present
-  notify: restart apache2
+    state: "present"
+  become: true
+  notify: "restart apache2"
   when: >
         ansible_os_family == "Debian" and
         (apache2_install_php_sqlite is defined and
@@ -30,10 +41,11 @@
   template:
     src: "{{ apache2_php_path }}/apache2/php.ini.j2"
     dest: "/{{ apache2_php_path }}/apache2/php.ini"
-    owner: root
-    group: root
+    owner: "root"
+    group: "root"
     mode: 0644
-  notify: restart apache2
+  become: true
+  notify: "restart apache2"
   when: >
         ansible_os_family == "Debian" and
         (apache2_config_php is defined and
