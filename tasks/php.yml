@@ -7,7 +7,7 @@
   notify: "restart apache2"
   when: ansible_os_family == "Alpine"
 
-- name: php | installing php5 for apache2 (Debian)
+- name: php | Installing PHP5 For Apache2 (Debian)
   apt:
     name: "libapache2-mod-php5"
     state: "present"
@@ -43,7 +43,7 @@
     dest: "/{{ apache2_php_path }}/apache2/php.ini"
     owner: "root"
     group: "root"
-    mode: 0644
+    mode: "u=rw,g=r,o=r"
   become: true
   notify: "restart apache2"
   when: >
