@@ -2,6 +2,9 @@
 # tasks file for ansible-apache2
 - include: set_facts.yml
 
+- include: alpine.yml
+  when: ansible_os_family == "Alpine"
+
 - include: debian.yml
   tags:
     - install_apache2

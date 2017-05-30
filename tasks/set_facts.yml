@@ -1,4 +1,12 @@
 ---
+- name: Setting Alpine Facts
+  set_fact:
+    apache2_log_dir: "/var/log/apache2"
+    apache2_web_group: "apache"
+    apache2_web_owner: "apache"
+    apache2_web_root: "/var/www/localhost/htdocs"
+  when: ansible_os_family == "Alpine"
+
 - name: setting Debian facts
   set_fact:
     apache2_log_dir: "/var/log/apache2"
