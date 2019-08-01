@@ -25,19 +25,19 @@
 
 - name: Setting PHP Version 5
   set_fact:
-    #no leading / for template path
+    # no leading / for template path
     apache2_php_path: etc/php5
     apache2_php_version: 5
   when: >
-        (ansible_distribution == "Ubuntu" and
-        ansible_distribution_version < '16.04') or
-        ansible_os_family == "Alpine"
+    (ansible_distribution == "Ubuntu" and
+    ansible_distribution_version < '16.04') or
+    ansible_os_family == "Alpine"
 
 - name: Setting PHP Version 7.0
   set_fact:
-    #no leading / for template path
+    # no leading / for template path
     apache2_php_path: etc/php/7.0
     apache2_php_version: 7.0
   when: >
-        ansible_distribution == "Ubuntu" and
-        ansible_distribution_version >= "16.04"
+    ansible_distribution == "Ubuntu" and
+    ansible_distribution_version >= "16.04"

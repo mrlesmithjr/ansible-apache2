@@ -14,3 +14,10 @@
   become: true
   register: result
   until: result is successful
+
+- name: debian | enabling apache on boot and starting
+  service:
+    name: apache2
+    state: started
+    enabled: true
+  become: true
