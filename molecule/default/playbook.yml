@@ -5,11 +5,19 @@
     - role: ansible-apache2
 
   post_tasks:
+    - name: Checking whether default website exists
+      stat:
+        path: /var/www/html/index.html
+      register: default_website_check
+      when: ansible_os_family == 'RedHat'
+
     - name: Ensuring default website exists
       file:
         path: /var/www/html/index.html
         state: touch
-      when: ansible_os_family == 'RedHat'
+      when: >
+        ansible_os_family == 'RedHat' and
+        not default_website_check['stat']['exists']|bool
 
     - name: Ensuring Apache is up and running
       uri:
