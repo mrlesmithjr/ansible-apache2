@@ -1,0 +1,21 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: ansible-apache2
+
+  post_tasks:
+    - name: Ensuring default website exists
+      file:
+        path: /var/www/html/index.html
+        state: touch
+      when: ansible_os_family == 'RedHat'
+
+    - name: Ensuring Apache is up and running
+      uri:
+        url: "{{ 'http://127.0.0.1:' + apache2_default_port|string }}"
+        status_code: 200
+      register: result
+      until: result.status == 200
+      retries: 60
+      delay: 1
