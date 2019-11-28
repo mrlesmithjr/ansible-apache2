@@ -58,3 +58,14 @@
   notify:
     - restart httpd
   when: ansible_os_family == "RedHat"
+
+- name: config_apache2 | Configuring Apache2 Website(s)
+  template:
+    src: etc/apache2/ports.conf.j2
+    dest: /etc/apache2/ports.conf
+  become: true
+  notify:
+    - restart apache2
+  when: >
+        ansible_os_family == "Debian" and
+        apache2_default_port != "80"
