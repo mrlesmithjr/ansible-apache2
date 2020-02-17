@@ -1,5 +1,5 @@
 ---
-- name: Example Playbook
+- name: Converge
   hosts: all
   roles:
     - role: ansible-apache2
