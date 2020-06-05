@@ -18,10 +18,3 @@
   until: result is successful
   when: >
         ansible_distribution != "Fedora"
-
-- name: redhat | enabling apache on boot and starting
-  service:
-    name: httpd
-    state: started
-    enabled: true
-  become: true
