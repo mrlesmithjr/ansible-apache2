@@ -1,0 +1,13 @@
+- set_fact:
+    service_name: "apache2"
+
+- set_fact:
+    service_name: "httpd"
+  when: ansible_os_family == "RedHat"
+
+- name: Enabling apache on boot and starting
+  service:
+    name: "{{ service_name }}"
+    state: started
+    enabled: true
+  become: true

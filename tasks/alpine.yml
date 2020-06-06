@@ -6,10 +6,3 @@
   become: true
   register: result
   until: result is successful
-
-- name: alpine | Ensuring Apache2 Service Is Started And Enabled On Boot
-  service:
-    name: apache2
-    state: started
-    enabled: true
-  become: true

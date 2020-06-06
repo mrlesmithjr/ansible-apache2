@@ -26,3 +26,5 @@
     - apache2_config_php
     - install_apache2_php5
   when: apache2_install_php
+
+- include: start_apache2.yml
