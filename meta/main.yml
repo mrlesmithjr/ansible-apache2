@@ -2,6 +2,9 @@
 galaxy_info:
   author: Larry Smith Jr.
   description: Ansible role to install/configure Apache2
+  role_name: apache2
+  namespace: mrlesmithjr
+
   license: MIT
   min_ansible_version: 1.2
 
